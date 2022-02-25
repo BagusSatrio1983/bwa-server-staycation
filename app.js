@@ -61,7 +61,7 @@ app.use('/bootstrap5', express.static(path.join(__dirname,'node_modules/bootstra
 // cors
 app.use(
   cors({
-    origin:'https://127.0.0.1:5500',
+    origin:'*',
     credentials: true
   })
 )

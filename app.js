@@ -59,12 +59,12 @@ app.use('/sb-admin-2', express.static(path.join(__dirname,'node_modules/startboo
 app.use('/bootstrap5', express.static(path.join(__dirname,'node_modules/bootstrap')));
 
 // cors
-app.use(
-  cors({
-    origin:'https://127.0.0.1:3000*',
-    credentials: true
-  })
-)
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Method', 'GET, POST, PUT, PATCH, DELETE, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  next();
+})
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

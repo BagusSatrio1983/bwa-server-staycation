@@ -12,6 +12,9 @@ const session = require('express-session');
 // connect flash
 const flash = require('connect-flash');
 
+// cors
+const cors = require('cors');
+
 // import mongoose
 const mongoose = require('mongoose');
 mongoose.connect('mongodb+srv://bagusproject:bwamern@cluster0.2el2c.mongodb.net/db_staycation?retryWrites=true&w=majority',
@@ -54,6 +57,14 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/sb-admin-2', express.static(path.join(__dirname,'node_modules/startbootstrap-sb-admin-2')));
 app.use('/bootstrap5', express.static(path.join(__dirname,'node_modules/bootstrap')));
+
+// cors
+app.use(
+  cors({
+    origin:'https://127.0.0.1:5500',
+    credentials: true
+  })
+)
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
